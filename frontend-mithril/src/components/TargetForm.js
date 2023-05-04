@@ -1,7 +1,7 @@
 import m from 'mithril'
 const { Target } = require("./TargetList")
 
-let formData = {
+let targetData = {
   title: "",
   startDate: "",
   endDate: "",
@@ -11,15 +11,14 @@ let formData = {
 let TargetForm = {
   submitForm: function (e) {
     e.preventDefault()
-    console.log(formData)
     m.request({
       method: "POST",
       url: "http://localhost:3001/target",
-      body: { title: formData.title, startDate: formData.startDate, endDate: formData.endDate, note: formData.note }
+      body: { title: targetData.title, startDate: targetData.startDate, endDate: targetData.endDate, note: targetData.note }
     })
       .then(function (response) {
         console.log(response)
-        Target.list.push(formData)
+        Target.list.push(targetData)
       })
       .catch(function (error) {
         console.log(error)
@@ -29,26 +28,26 @@ let TargetForm = {
     return m("form", { onsubmit: this.submitForm }, [
       m("label.label", "Title"),
       m("input.input[type=text][placeholder=Title]", {
-        value: formData.title, onchange: function (e) {
-          formData.title = e.currentTarget.value
+        value: targetData.title, onchange: function (e) {
+          targetData.title = e.currentTarget.value
         }
       }),
       m("label.label", "Start Date"),
       m("input.input[placeholder=YYYY-MM-DD]", {
-        value: formData.startDate, onchange: function (e) {
-          formData.startDate = e.currentTarget.value
+        value: targetData.startDate, onchange: function (e) {
+          targetData.startDate = e.currentTarget.value
         }
       }),
       m("label.label", "End Date"),
       m("input.input[placeholder=YYYY-MM-DD]", {
-        value: formData.endDate, oninput: function (e) {
-          formData.endDate = e.currentTarget.value
+        value: targetData.endDate, oninput: function (e) {
+          targetData.endDate = e.currentTarget.value
         }
       }),
       m("label.label", "Notes"),
       m("input.input[placeholder=Notes]", {
-        value: formData.note, oninput: function (e) {
-          formData.note = e.currentTarget.value
+        value: targetData.note, oninput: function (e) {
+          targetData.note = e.currentTarget.value
         }
       }),
       m("button.button[type=submit]", "Save"),
