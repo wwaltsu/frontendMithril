@@ -1,19 +1,19 @@
 import m, { mount } from "mithril"
-import { EventList } from "./components/EventList"
-import { GoalList } from "./components/GoalList"
-import { EventForm } from "./components/EventForm"
+import { TargetForm } from "./components/TargetForm"
+import { TargetList } from "./components/TargetList"
+
 
 const root = document.body
 
 function MainComponent() {
   return {
     view: () => {
-      return m("div", { "class" : ".container"},[
-        m(EventForm),
-        m(GoalList),
-        m(EventList,),
+      return m("div", { "class": ".container" }, [
+        m(TargetForm),
+        m(TargetList)
       ])
-    }}
+    }
+  }
 }
 
 mount(root, MainComponent)
